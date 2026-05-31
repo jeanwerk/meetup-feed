@@ -225,9 +225,13 @@ try {
         <p><strong>Location:</strong> <?= e($ev['LOCATION']) ?></p>
         <?php endif; ?>
 
-        <?php if (!empty($ev['DESCRIPTION'])): ?>
+        <?php 
+        /* UNUSED FOR NOW
+        if (!empty($ev['DESCRIPTION'])): ?>
         <p><?= nl2br(e(trim($ev['DESCRIPTION']))) ?></p>
-        <?php endif; ?>
+        <?php endif; 
+        */
+        ?>
 
         <?php if (!empty($ev['URL'])): ?>
         <p><a href="<?= e($ev['URL']) ?>"><?= e($t['rsvp']) ?> &rarr;</a></p>
