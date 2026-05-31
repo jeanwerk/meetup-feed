@@ -109,14 +109,18 @@ function e(string $s): string
 
 $translations = [
     'en' => [
-        'rsvp'  => 'RSVP on Meetup',
-        'date'  => 'Date',
-        'time'  => 'Time',
+        'upcoming-events'       => 'Upcoming events',
+        'rsvp'                  => 'RSVP on Meetup',
+        'date'                  => 'Date',
+        'time'                  => 'Time',
+        'more-events-at'        => 'More events at ',
     ],
     'eo' => [
-        'rsvp'  => 'Aliĝi en Meetup',
-        'date'  => 'Dato',
-        'time'  => 'Horo',
+        'upcoming-events'       => 'Venontaj eventoj',
+        'rsvp'                  => 'Aliĝi en Meetup',
+        'date'                  => 'Dato',
+        'time'                  => 'Horo',
+        'more-events-at'        => 'Pliaj eventoj ĉe ',
     ],
 ];
 
@@ -191,12 +195,11 @@ try {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Upcoming Events – Esperanto in Sydney</title>
+    <title><?= e($t[upcoming-events]) ?> – Esperanto in Sydney</title>
 </head>
 <body>
 
-<h1>Upcoming events &ndash; Esperanto in Sydney</h1>
-<p>Source: <a href="https://www.meetup.com/<?= e(GROUP_URLNAME) ?>/events/">meetup.com/<?= e(GROUP_URLNAME) ?></a></p>
+<h2>Upcoming events &ndash; Esperanto in Sydney</h1>
 
 <?php if ($error): ?>
     <p><strong>Error:</strong> <?= e($error) ?></p>
@@ -206,7 +209,6 @@ try {
 
 <?php else: ?>
     
-
     <?php foreach ($events as $ev): ?>
     <article>
         <h2><?= e($ev['SUMMARY'] ?? '(Untitled event)') ?></h2>
@@ -235,6 +237,8 @@ try {
     <?php endforeach; ?>
 
 <?php endif; ?>
+
+<p><?= e($t['more-events-at']) ?><a href="https://www.meetup.com/<?= e(GROUP_URLNAME) ?>/events/">meetup.com/<?= e(GROUP_URLNAME) ?></a></p>
 
 </body>
 </html>
