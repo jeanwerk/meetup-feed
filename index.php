@@ -210,16 +210,18 @@ try {
 <?php else: ?>
     
     <?php foreach ($events as $ev): ?>
-    <article>
+    <article class="mtf-event">
 
-        <p class="screen-reader-text"><?= e($t['date']) ?>:</p>
-        <p><?= format_date($ev['_start_ts'], $lang) ?>
-        <p class="screen-reader-text"><?= e($t['time']) ?>:</p>
-        <p><?= format_time($ev['_start_ts'], $lang) ?></p>
-        <?php if (!empty($ev['DTEND'])): ?>
-            &ndash; <?= format_time(ical_to_timestamp($ev['DTEND']), $lang) ?>
-        <?php endif; ?>
-        </p>
+        <div class="mtf-event__date-time">
+            <p class="screen-reader-text"><?= e($t['date']) ?>:</p>
+            <p><?= format_date($ev['_start_ts'], $lang) ?>
+            <p class="screen-reader-text"><?= e($t['time']) ?>:</p>
+            <p><?= format_time($ev['_start_ts'], $lang) ?></p>
+            <?php if (!empty($ev['DTEND'])): ?>
+                &ndash; <?= format_time(ical_to_timestamp($ev['DTEND']), $lang) ?>
+            <?php endif; ?>
+            </p>
+        </div>
 
         <h2><?= e($ev['SUMMARY'] ?? '(Untitled event)') ?></h2>
 
