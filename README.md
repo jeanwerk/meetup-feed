@@ -1,2 +1,2 @@
 # meetup-feed
-Meetup.com events feed without OAuth2
+Meetup.com events feed in English and Esperanto without OAuth2

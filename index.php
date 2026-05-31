@@ -205,7 +205,7 @@ try {
     <p>No upcoming events found.</p>
 
 <?php else: ?>
-    <p><?= count($events) ?> upcoming event<?= count($events) !== 1 ? 's' : '' ?>.</p>
+    
 
     <?php foreach ($events as $ev): ?>
     <article>
