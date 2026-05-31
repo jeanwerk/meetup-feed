@@ -212,8 +212,10 @@ try {
     <?php foreach ($events as $ev): ?>
     <article>
 
-        <p><strong><?= e($t['date']) ?>:</strong><br> <?= format_date($ev['_start_ts'], $lang) ?><br>
-        <strong><?= e($t['time']) ?>:</strong><br> <?= format_time($ev['_start_ts'], $lang) ?>
+        <p class="screen-reader-text"><?= e($t['date']) ?>:</p>
+        <p><?= format_date($ev['_start_ts'], $lang) ?>
+        <p class="screen-reader-text"><?= e($t['time']) ?>:</p>
+        <p><?= format_time($ev['_start_ts'], $lang) ?></p>
         <?php if (!empty($ev['DTEND'])): ?>
             &ndash; <?= format_time(ical_to_timestamp($ev['DTEND']), $lang) ?>
         <?php endif; ?>
