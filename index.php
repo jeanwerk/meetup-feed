@@ -105,9 +105,60 @@ function e(string $s): string
     return htmlspecialchars($s, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
 }
 
-function format_dt(int $ts): string
+// ── Translations ──────────────────────────────────────────────────────────────
+
+$translations = [
+    'en' => [
+        'rsvp'  => 'RSVP on Meetup',
+        'date'  => 'Date',
+        'time'  => 'Time',
+    ],
+    'eo' => [
+        'rsvp'  => 'Aliĝi en Meetup',
+        'date'  => 'Dato',
+        'time'  => 'Horo',
+    ],
+];
+
+$lang = in_array($_GET['lang'] ?? '', array_keys($translations)) ? $_GET['lang'] : 'en';
+$t    = $translations[$lang];
+
+// ── Esperanto date data ────────────────────────────────────────────────────────
+
+const EO_DAYS = [
+    'Sunday'    => 'dimanĉo',
+    'Monday'    => 'lundo',
+    'Tuesday'   => 'mardo',
+    'Wednesday' => 'merkredo',
+    'Thursday'  => 'ĵaŭdo',
+    'Friday'    => 'vendredo',
+    'Saturday'  => 'sabato',
+];
+
+const EO_MONTHS = [
+    1  => 'januaro',  2  => 'februaro', 3  => 'marto',
+    4  => 'aprilo',   5  => 'majo',     6  => 'junio',
+    7  => 'julio',    8  => 'aŭgusto',  9  => 'septembro',
+    10 => 'oktobro',  11 => 'novembro', 12 => 'decembro',
+];
+
+// ── Date / time formatters ─────────────────────────────────────────────────────
+
+function format_date(int $ts, string $lang): string
 {
-    return date('D j M Y, g:i A', $ts);
+    if ($lang === 'eo') {
+        $day   = EO_DAYS[date('l', $ts)];
+        $dom   = (int) date('j', $ts);
+        $month = EO_MONTHS[(int) date('n', $ts)];
+        $year  = date('Y', $ts);
+        return "$day, {$dom}-a de $month $year";
+    }
+    return date('D j M Y', $ts);
+}
+
+function format_time(int $ts, string $lang): string
+{
+    return $lang === 'eo' ? date('H:i', $ts) : date('g:i A', $ts);
 }
 
 // ── Main ──────────────────────────────────────────────────────────────────────
@@ -160,9 +211,10 @@ try {
     <article>
         <h2><?= e($ev['SUMMARY'] ?? '(Untitled event)') ?></h2>
 
-        <p><strong>Date:</strong> <?= format_dt($ev['_start_ts']) ?>
+        <p><strong><?= e($t['date']) ?>:</strong> <?= format_date($ev['_start_ts'], $lang) ?><br>
+        <strong><?= e($t['time']) ?>:</strong> <?= format_time($ev['_start_ts'], $lang) ?>
         <?php if (!empty($ev['DTEND'])): ?>
-            &ndash; <?= format_dt(ical_to_timestamp($ev['DTEND'])) ?>
+            &ndash; <?= format_time(ical_to_timestamp($ev['DTEND']), $lang) ?>
         <?php endif; ?>
         </p>
 
@@ -175,7 +227,7 @@ try {
         <?php endif; ?>
 
         <?php if (!empty($ev['URL'])): ?>
-        <p><a href="<?= e($ev['URL']) ?>">RSVP on Meetup &rarr;</a></p>
+        <p><a href="<?= e($ev['URL']) ?>"><?= e($t['rsvp']) ?> &rarr;</a></p>
         <?php endif; ?>
 
         <hr>
