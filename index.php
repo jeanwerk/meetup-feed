@@ -214,9 +214,9 @@ try {
 
         <div class="mtf-event__date-time">
             <p class="screen-reader-text"><?= e($t['date']) ?>:</p>
-            <p><?= format_date($ev['_start_ts'], $lang) ?>
+            <p><?= format_date($ev['_start_ts'], $lang) ?></p>
             <p class="screen-reader-text"><?= e($t['time']) ?>:</p>
-            <p><?= format_time($ev['_start_ts'], $lang) ?></p>
+            <p><?= format_time($ev['_start_ts'], $lang) ?>
             <?php if (!empty($ev['DTEND'])): ?>
                 &ndash; <?= format_time(ical_to_timestamp($ev['DTEND']), $lang) ?>
             <?php endif; ?>
