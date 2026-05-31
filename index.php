@@ -199,7 +199,7 @@ try {
 </head>
 <body>
 
-<h2>Upcoming events &ndash; Esperanto in Sydney</h1>
+<h2><?= e($t['upcoming-events']) ?> &ndash; Esperanto in Sydney</h1>
 
 <?php if ($error): ?>
     <p><strong>Error:</strong> <?= e($error) ?></p>
@@ -211,14 +211,15 @@ try {
     
     <?php foreach ($events as $ev): ?>
     <article>
-        <h2><?= e($ev['SUMMARY'] ?? '(Untitled event)') ?></h2>
 
-        <p><strong><?= e($t['date']) ?>:</strong> <?= format_date($ev['_start_ts'], $lang) ?><br>
-        <strong><?= e($t['time']) ?>:</strong> <?= format_time($ev['_start_ts'], $lang) ?>
+        <p><strong><?= e($t['date']) ?>:</strong><br> <?= format_date($ev['_start_ts'], $lang) ?><br>
+        <strong><?= e($t['time']) ?>:</strong><br> <?= format_time($ev['_start_ts'], $lang) ?>
         <?php if (!empty($ev['DTEND'])): ?>
             &ndash; <?= format_time(ical_to_timestamp($ev['DTEND']), $lang) ?>
         <?php endif; ?>
         </p>
+
+        <h2><?= e($ev['SUMMARY'] ?? '(Untitled event)') ?></h2>
 
         <?php if (!empty($ev['LOCATION'])): ?>
         <p><strong>Location:</strong> <?= e($ev['LOCATION']) ?></p>
@@ -232,7 +233,6 @@ try {
         <p><a href="<?= e($ev['URL']) ?>"><?= e($t['rsvp']) ?> &rarr;</a></p>
         <?php endif; ?>
 
-        <hr>
     </article>
     <?php endforeach; ?>
 
