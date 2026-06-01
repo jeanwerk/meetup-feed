@@ -362,5 +362,20 @@ body {
 
 <p><?= e($t['more-events-at']) ?><a href="https://www.meetup.com/<?= e(GROUP_URLNAME) ?>/events/">meetup.com/<?= e(GROUP_URLNAME) ?></a></p>
 
+<script>
+    // Send the iframe height to the page where it's embedded
+    function sendHeight() {
+        window.parent.postMessage(
+            {
+                type: 'iframeHeight',
+                height: document.documentElement.scrollHeight
+            },
+            '*'
+        );
+    }
+
+    window.addEventListener('load', sendHeight);
+    window.addEventListener('resize', sendHeight);
+</script>
 </body>
 </html>
