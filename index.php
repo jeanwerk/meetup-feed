@@ -195,11 +195,11 @@ try {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title><?= e($t['upcoming-events']) ?> – Esperanto in Sydney</title>
+    <title><?= e($t['upcoming-events']) ?></title>
 </head>
 <body>
 
-<h2><?= e($t['upcoming-events']) ?> &ndash; Esperanto in Sydney</h1>
+<h2><?= e($t['upcoming-events']) ?></h1>
 
 <?php if ($error): ?>
     <p><strong>Error:</strong> <?= e($error) ?></p>
@@ -224,7 +224,7 @@ try {
         </div>
 
         <div class="mtf-event__title">
-            <h2><?= e($ev['SUMMARY'] ?? '(Untitled event)') ?></h2>
+            <h3><?= e($ev['SUMMARY'] ?? '(Untitled event)') ?></h3>
         </div>
 
         <?php 
