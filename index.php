@@ -223,11 +223,18 @@ try {
             </p>
         </div>
 
-        <h2><?= e($ev['SUMMARY'] ?? '(Untitled event)') ?></h2>
+        <div class="mtf-event__title">
+            <h2><?= e($ev['SUMMARY'] ?? '(Untitled event)') ?></h2>
+        </div>
 
-        <?php if (!empty($ev['LOCATION'])): ?>
+        <?php 
+        /* DOESN'T EXIST NOW
+        if (!empty($ev['LOCATION'])): ?>
         <p><strong>Location:</strong> <?= e($ev['LOCATION']) ?></p>
-        <?php endif; ?>
+        <?php endif; 
+        */
+        ?>
+
 
         <?php 
         /* UNUSED FOR NOW
@@ -237,9 +244,11 @@ try {
         */
         ?>
 
-        <?php if (!empty($ev['URL'])): ?>
-        <p><a href="<?= e($ev['URL']) ?>"><?= e($t['rsvp']) ?> &rarr;</a></p>
-        <?php endif; ?>
+        <div class="mtf-event_button">
+            <?php if (!empty($ev['URL'])): ?>
+            <p><a href="<?= e($ev['URL']) ?>"><?= e($t['rsvp']) ?> &rarr;</a></p>
+            <?php endif; ?>
+        </div>
 
     </article>
     <?php endforeach; ?>
