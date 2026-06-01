@@ -244,7 +244,7 @@ try {
         */
         ?>
 
-        <div class="mtf-event_button">
+        <div class="mtf-event__button">
             <?php if (!empty($ev['URL'])): ?>
             <p><a href="<?= e($ev['URL']) ?>"><?= e($t['rsvp']) ?> &rarr;</a></p>
             <?php endif; ?>
