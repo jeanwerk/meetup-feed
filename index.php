@@ -196,6 +196,111 @@ try {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title><?= e($t['upcoming-events']) ?></title>
+    <style>
+:root {
+  --colour-1: #333;
+  --colour-2: #fff;
+  --colour-3: #c15411;
+}
+body {
+  background: #fcfcfc;
+    color: #333;
+    font-family: Arial;
+    font-family: "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+}
+
+.screen-reader-text {
+  border: 0;
+  clip-path: inset(50%);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+  word-wrap: normal !important;
+  word-break: normal !important;
+}
+
+.mtf-event {
+  border: 2px solid var( --colour-1 );
+  border-radius: 1rem;
+  margin: 1rem 0;
+  padding: 0 1rem 0 0;
+}
+
+.mtf-event__date-time {
+  background-color: var( --colour-1 );
+  border-radius: 0.5rem 0 0 0.5rem;
+  color: var( --colour-2 );
+  padding: 0 0.5rem;
+  text-align: center;
+}
+
+.mtf-event__title {
+  align-items: center;
+  display: flex;
+  padding: 1rem;
+}
+
+
+.mtf-event__button {
+  align-items: center;
+  display: flex;
+  justify-content: right;
+  padding: 1rem;
+}
+
+.mtf-event__button a {
+  background-color: var( --colour-3 );
+  border-radius: 1rem;
+  color: var( --colour-2 );
+  padding: 0.7rem 0.5rem 0.8rem 0.5rem;
+  text-decoration: none;
+}
+
+/* Desktop/tablet: all events details on a single row */
+@media ( min-width: 768px ) {
+  .mtf-event {
+    display: grid;
+    grid-template-columns: 20% 50% 30%;
+  }  
+}
+
+/* Mobile */
+@media ( max-width: 767px ) {
+  h2 {
+    text-align: center;
+  }
+  
+  .mtf-event {
+    padding: 0;
+    text-align: center;
+  }
+
+  .mtf-event__date-time {
+    border-radius: 0.5rem 0.5rem 0 0;
+    color: var( --colour-2 );
+    padding: 1rem 0.5rem;
+    text-align: center;
+  }  
+  
+  .mtf-event__date-time p {
+    margin: 0;
+  }
+  
+  .mtf-event__title {
+    justify-content: center;
+    padding: 0;
+  }
+  
+  .mtf-event__button {
+    justify-content: center;
+    padding: 0 0 1rem 0;  
+  }
+
+}
+    </style>
 </head>
 <body>
 
